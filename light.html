@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>光电系统设计上机实验</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width",initial-scale=1.0>
+	<meta name="description" content="姓名：徐锐 班级：应用光电子学2班 学号：1609090623">
+	<mate name="author" content="徐锐">
+</head>
+<body>
+
+<script>
+
+	//定义一个计算辐出度的函数
+	function fuchudu() {
+	    let temperature1 = document.getElementById('temperature1').value
+	    let f1 = document.getElementById('f1').value
+	    let f2 = document.getElementById('f2').value
+	    if (!isNaN(temperature1) && !isNaN(f1) && !isNaN(f2)) {
+	        temperature1 = Number(temperature1) + 273;
+	        var sigema = 0.0000000567;
+	        var t = Math.pow(temperature1, 4);
+	        var area1 = (Number(f1) - Number(f2) ) * sigema * t;
+	        document.getElementById('area1').value = area1.toFixed(20);
+	    } else {
+	        alert("请输入正确的数字");
+	    }
+	}
+
+	//定义一个计算最大辐射波长的函数
+	function fushebochang(){
+	    	let temperature2 = document.getElementById('temperature2').value
+	   		if (!isNaN(temperature2)) {
+	   			temperature2 = Number(temperature3) + 273;
+	   			var bochang2 = 2898/2;
+	   			document.getElementById('area2').value = bochang2;
+	   		} else {
+	            alert("请输入正确的数字");
+	        }
+	    }
+
+	//定义一个计算各波长辐射出射度的函数
+    function fushechushedu(){
+    	let temperature3 = document.getElementById('temperature3').value
+    	let length3= document.getElementById('length3').value
+    	if (!isNaN(temperature3) && !isNaN(length3)) {
+    		temperature3 = Number(temperature3) + 273;
+    		var f = Number(length3) * temperature3;
+    		var c2 = 0.014388 / f;
+    		var five = Math.pow(f, 5);
+    		var c1 = 0.00000000000000037418;
+    		var e = (Math.pow(2.718281828459, c2)-1);
+    		var ji = e * five;
+    		var area3 = c1 / ji;
+    		document.getElementById('area3').value = area3;
+    	}else {
+            alert("请输入正确的数字");
+        }
+    }
+
+</script>
+
+<p>计算波长范围内的辐出度</p>
+<div>
+	<p>温度:<input type="text" placeholder="请输入温度" id="temperature1" value="" /></p><!--用户将在此处输入温度值-->
+	<p>f1:<input type="text" placeholder="请查表输入f1" id="f1" value="" /></p><!--用户将在此处输入f1值-->
+	<p>f2:<input type="text" placeholder="请查表输入f2" id="f2" value="" /></p><!--用户将在此处输入f2值-->
+	<button onclick="fuchudu()">计算辐出度</button><input id="area1" type="text">
+</div>
+
+<p>计算最大辐射波长</p>
+<div>
+	<p>温度:<input type="text" placeholder="请输入温度" id="temperature2" value="" /></p><!--用户将在此处输入温度值-->
+	<button onclick="fushebochang()" >计算最大辐射波长</button><input id="area2" type="text">
+</div>
+
+<p>计算各波长辐射出射度</p>
+<div>
+	<p>温度:<input type="text" placeholder="请输入温度" id="temperature3" value="" /></p><!--用户将在此处输入温度值-->
+	<p>波长:<input type="text" placeholder="请输入波长" id="length3" value="" /></p><!--用户将在此处输入波长-->
+	<button onclick="fushechushedu()">计算各波长辐射出射度</button><input id="area3" type="text">
+</div>
+
+</body>
+</html>
